@@ -17,7 +17,7 @@ public class TutByTest {
         TutByPage.open();
         TutByPage.goToWorkPage();
         TutByPage.searchText(findText);
-        Integer result = TutByPage.checkCountForConditions(findText);
+        Integer result = TutByPage.checkCount(findText);
         System.out.print("retrieved " + result + " results. ");
 
         Assert.assertTrue("cannot be larger than max result count per page", result <= maxCountPerPage);
@@ -26,6 +26,7 @@ public class TutByTest {
 
     @After
     public void Clean() {
+
         TutByPage.close();
     }
 }

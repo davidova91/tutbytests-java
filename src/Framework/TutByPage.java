@@ -10,12 +10,13 @@ import java.util.List;
 public class TutByPage {
 
     public static WebDriver instance;
+    private static String baseUrl = "http://tut.by";
 
     public static void open() {
 
         instance = new FirefoxDriver();
         instance.manage().window().maximize();
-        instance.get("http://tut.by");
+        instance.get(baseUrl);
     }
 
     public static void goToWorkPage() {
@@ -30,14 +31,13 @@ public class TutByPage {
     }
 
 
-    public static Integer checkCountForConditions(String findText) {
+    public static Integer checkCount(String findText) {
 
         Integer res = 0;
         List<WebElement> elements = instance.findElements(By.xpath("//div[@class='search-result-item__description']"));
 
         for (WebElement element : elements) {
             String text = element.getText().toLowerCase();
-
             if (text.contains(findText.toLowerCase())) {
                 res++;
             }
@@ -46,6 +46,7 @@ public class TutByPage {
     }
 
     public static void close() {
+
         instance.quit();
     }
 }
